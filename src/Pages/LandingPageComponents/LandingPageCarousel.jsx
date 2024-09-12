@@ -51,7 +51,7 @@ const LandingPageCarousel = () => {
   };
 
   useEffect(() => {
-    const url = "http://localhost:8080/courses/all";
+    const url = "https://xvgt0e9kc6.execute-api.ap-south-1.amazonaws.com/courses/all";
     setLoading(true);
 
     fetch(url)

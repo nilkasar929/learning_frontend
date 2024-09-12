@@ -1,5 +1,6 @@
 import { Flex, Grid, Image, Text } from "@chakra-ui/react";
 import React from "react";
+import "./css/section5.css"
 
 const Section5 = () => {
   return (
@@ -44,7 +45,7 @@ const Section5 = () => {
             xl: "6",
           }}
         >
-          <Flex
+          <Flex className="card"
             w="100%"
             h="20"
             gap={2}
@@ -54,7 +55,7 @@ const Section5 = () => {
               cursor: "pointer",
             }}
           >
-            <Flex width={"25%"}>
+            <Flex width={"25%"} >
               <Image
                 width="120%"
                 src="https://d3njjcbhbojbot.cloudfront.net/api/utilities/v1/imageproxy/https://s3.amazonaws.com/coursera_assets/browse/domains/data_science.png?auto=format%2Ccompress&dpr=1&fit=crop&h=100"
@@ -62,7 +63,7 @@ const Section5 = () => {
                 objectFit="fill"
               />
             </Flex>
-            <Flex justifyContent="center" direction="column">
+            <Flex justifyContent="center" direction="column" >
               <Text fontSize="12px" fontFamily="poppins" fontWeight="semibold">
                 Data Science
               </Text>
@@ -75,9 +76,16 @@ const Section5 = () => {
               >
                 425 Courses
               </Text>
+              
+              
+                <button  className="demo">see more</button>
+              
+           
+              
             </Flex>
           </Flex>
           <Flex
+          className="card"
             w="100%"
             h="20"
             gap={2}
@@ -107,9 +115,12 @@ const Section5 = () => {
               >
                 1395 Courses
               </Text>
+              <button  className="demo">see more</button>
+
             </Flex>
           </Flex>
           <Flex
+          className="card"
             w="100%"
             h="20"
             gap={2}
@@ -139,9 +150,11 @@ const Section5 = () => {
               >
                 668 Courses
               </Text>
+              <button  className="demo">see more</button>
             </Flex>
           </Flex>
           <Flex
+          className="card"
             w="100%"
             h="20"
             gap={2}
@@ -171,9 +184,11 @@ const Section5 = () => {
               >
                 471 Courses
               </Text>
+              <button  className="demo">see more</button>
             </Flex>
           </Flex>
           <Flex
+          className="card"
             w="100%"
             h="20"
             gap={2}
@@ -203,9 +218,11 @@ const Section5 = () => {
               >
                 300 Courses
               </Text>
+              <button  className="demo">see more</button>
             </Flex>
           </Flex>
           <Flex
+          className="card"
             w="100%"
             h="20"
             gap={2}
@@ -235,9 +252,11 @@ const Section5 = () => {
               >
                 666 Courses
               </Text>
+              <button  className="demo">see more</button>
             </Flex>
           </Flex>
           <Flex
+          className="card"
             w="100%"
             h="20"
             gap={2}
@@ -267,9 +286,11 @@ const Section5 = () => {
               >
                 338 Courses
               </Text>
+              <button  className="demo">see more</button>
             </Flex>
           </Flex>
           <Flex
+          className="card"
             w="100%"
             h="20"
             gap={2}
@@ -299,9 +320,11 @@ const Section5 = () => {
               >
                 413 Courses
               </Text>
+              <button  className="demo">see more</button>
             </Flex>
           </Flex>
           <Flex
+          className="card"
             w="100%"
             h="20"
             gap={2}
@@ -331,9 +354,11 @@ const Section5 = () => {
               >
                 150 Courses
               </Text>
+              <button  className="demo">see more</button>
             </Flex>
           </Flex>
           <Flex
+          className="card"
             w="100%"
             h="20"
             gap={2}
@@ -363,9 +388,11 @@ const Section5 = () => {
               >
                 145 Courses
               </Text>
+              <button  className="demo">see more</button>
             </Flex>
           </Flex>
           <Flex
+          className="card"
             w="100%"
             h="20"
             gap={2}
@@ -396,6 +423,7 @@ const Section5 = () => {
               >
                 70 Courses
               </Text>
+              <button  className="demo">see more</button>
             </Flex>
           </Flex>
         </Grid>

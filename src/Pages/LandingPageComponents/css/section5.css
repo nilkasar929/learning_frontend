@@ -1,0 +1,40 @@
+
+  .card:hover {
+    
+    color: #007bff;
+  }
+  
+  .see-more {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    padding: 8px 12px;
+    background-color: #007bff;
+    color: rgb(4, 4, 4);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: opacity 0.3s ease-in-out;
+  }
+  
+  .card:hover .see-more {
+    opacity: 1;
+  }
+  
+  .demo{
+    position: absolute;
+    align-items: end;
+    height: 2.59%;
+    padding: 10px;
+    width: 5.15%;
+    margin-left: 10.1%;
+    background-color: #007bff;
+    color: rgb(4, 4, 4);
+    border: none;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.3s ease-in;
+  }
+  .card:hover .demo {
+    opacity: 1;
+  }

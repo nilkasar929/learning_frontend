@@ -56,7 +56,7 @@ export function NavBarDrawer({ isOpen, onClose }) {
     };
     axios
       .post(
-        "http://localhost:8080/users/logout",
+        "https://xvgt0e9kc6.execute-api.ap-south-1.amazonaws.com//users/logout",
         {},
         { headers }
       )

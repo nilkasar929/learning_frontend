@@ -9,7 +9,7 @@ import {
   actionsingUpSuccess,
 } from "./actionType";
 
-let baseURL = "https://learning-backend-3g5p.onrender.com/";
+let baseURL = "https://xvgt0e9kc6.execute-api.ap-south-1.amazonaws.com/";
 
 export const loginFetch = (value) => (dispatch) => {
   dispatch(actionLoginLoading());
