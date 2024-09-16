@@ -8,20 +8,16 @@ import {
   Input,
   Spinner,
   Text,
-  Toast,
-  keyframes,
   useToast,
+  Checkbox,
 } from "@chakra-ui/react";
-
 import { AiOutlineEyeInvisible, AiFillEye } from "react-icons/ai";
-
 import { useDispatch, useSelector } from "react-redux";
-
 import { Link, useNavigate } from "react-router-dom";
 import { signUpFetch } from "../Redux/UserReducer/action";
 import { actionsingUpError } from "../Redux/UserReducer/actionType";
 
-// Sucess Toast
+// Success Toast
 export const showToast = ({ toast, message, color }) => {
   toast({
     position: "top-right",
@@ -29,7 +25,7 @@ export const showToast = ({ toast, message, color }) => {
     duration: 3000,
     render: () => (
       <Box color="white" p={3} bg={color}>
-        {message || 'Something Went Wrong Please Refresh'}
+        {message || "Something went wrong. Please refresh."}
       </Box>
     ),
   });
@@ -60,7 +56,7 @@ const SignUp = () => {
   const [eyeclose, seteyeMoment] = useState(false);
   const toast = useToast();
 
-  // will show the input element when click on element
+  // Show input fields on click
   function showInput(e) {
     const ele = e.target.id;
     if (ele === "email") {
@@ -82,7 +78,7 @@ const SignUp = () => {
     }
   }
 
-  // will block the input element when click on backgrond
+  // Block input field on background click
   function blockInput(event) {
     if (event.target === backgroundRef.current && !form.email) {
       emailInput.current.style.display = "none";
@@ -96,22 +92,19 @@ const SignUp = () => {
       confirmPasswordInput.current.style.display = "none";
       confirmPasswordbox.current.style.padding = "20px";
     }
-
     if (event.target === backgroundRef.current && !form.name) {
       nameInput.current.style.display = "none";
       namebox.current.style.padding = "20px";
     }
   }
 
-  // form management
-
+  // Form input management
   function handleInput(e) {
     const { value, name } = e.target;
     setForm({ ...form, [name]: value });
   }
 
-  // see password;
-
+  // Toggle password visibility
   function showPassword() {
     seteyeMoment(!eyeclose);
     passwordInput.current.type === "password"
@@ -119,13 +112,11 @@ const SignUp = () => {
       : (passwordInput.current.type = "password");
   }
 
-  // handle promotion
+  // Handle promotion checkbox
   const handleCheckboxChange = () => {
     setIsChecked(!isChecked);
     setForm({ ...form, isPromotion: !isChecked });
   };
-
-
 
   // SignUp function
   async function handleSignUp() {
@@ -147,108 +138,102 @@ const SignUp = () => {
       return;
     }
 
-     dispatch(signUpFetch(form)).then((res) => {
-    if(!userStore?.isError){
-      setForm({ email: "", password: "", confirmPassword: "", name: "" });
-      showToast({toast,message:'SignUp Successful',color:'green'});
-      navigate('/login')
-    }else{
-      showToast({toast,message:userStore?.isError,color:'red'});
-    }
-      
+    dispatch(signUpFetch(form)).then((res) => {
+      if (!userStore?.isError) {
+        setForm({ email: "", password: "", confirmPassword: "", name: "" });
+        showToast({ toast, message: "SignUp Successful", color: "green" });
+        navigate("/login");
+      } else {
+        showToast({ toast, message: userStore?.isError, color: "red" });
+      }
     });
   }
 
   return (
     <Box pb="2rem">
-      <Box>
-        <Navbar />
-      </Box>
+      <Navbar />
       <Box
         display="flex"
         justifyContent="center"
         onClick={blockInput}
         ref={backgroundRef}
         pt="100px"
+        px={{ base: "1rem", md: "2rem" }}
       >
-        <Box w={{ base: "90%", sm: "80%", md: "40%", lg: "30%" }}>
-          <Box mt="15px">
-            <Heading size="md">Sign up and start learning</Heading>
+        <Box
+          w={{ base: "90%", sm: "80%", md: "40%", lg: "30%" }}
+          boxShadow="lg"
+          p="2rem"
+          bg="white"
+          borderRadius="md"
+        >
+          <Box mb="1rem">
+            <Heading size="lg">Sign up and start learning</Heading>
           </Box>
-          {/* 2nd box  */}
-          <Box mt="35px">
-            {/* name */}
+          <Box mt="1rem">
+            {/* Name */}
             <Box
               border="1px solid"
-              p="20px"
+              p="1rem"
+              mb="0.75rem"
               id="name"
-              m="5px 0"
               onClick={showInput}
               ref={namebox}
+              borderRadius="md"
             >
-              <Box>
-                <Heading id="name" size="xs">
-                  Name
-                </Heading>
-              </Box>
-              <Box>
-                <Input
-                  type="text"
-                  display="none"
-                  ref={nameInput}
-                  border="none"
-                  size="sm"
-                  focusBorderColor="transparent"
-                  _focus={{ outline: "none" }}
-                  name="name"
-                  value={form.name}
-                  onChange={handleInput}
-                />
-              </Box>
+              <Heading size="xs" id="name">
+                Name
+              </Heading>
+              <Input
+                type="text"
+                display="none"
+                ref={nameInput}
+                border="none"
+                focusBorderColor="transparent"
+                _focus={{ outline: "none" }}
+                name="name"
+                value={form.name}
+                onChange={handleInput}
+              />
             </Box>
-            {/* email  */}
+            {/* Email */}
             <Box
               border="1px solid"
-              p="20px"
+              p="1rem"
+              mb="0.75rem"
               id="email"
-              m="5px 0"
               onClick={showInput}
               ref={emailbox}
+              borderRadius="md"
             >
-              <Box>
-                <Heading id="email" size="xs">
-                  Email
-                </Heading>
-              </Box>
-              <Box>
-                <Input
-                  display="none"
-                  ref={emailInput}
-                  border="none"
-                  p="0px"
-                  focusBorderColor="transparent"
-                  _focus={{ outline: "none" }}
-                  name="email"
-                  value={form.email}
-                  onChange={handleInput}
-                />
-              </Box>
+              <Heading size="xs" id="email">
+                Email
+              </Heading>
+              <Input
+                display="none"
+                ref={emailInput}
+                border="none"
+                focusBorderColor="transparent"
+                _focus={{ outline: "none" }}
+                name="email"
+                value={form.email}
+                onChange={handleInput}
+              />
             </Box>
-            {/* password */}
+            {/* Password */}
             <Box
               border="1px solid"
-              p="20px"
+              p="1rem"
+              mb="0.75rem"
               id="password"
-              m="5px 0"
               onClick={showInput}
               ref={passwordbox}
+              borderRadius="md"
             >
-              <Box display="flex" justifyContent="space-between">
-                <Box onClick={showInput} w="100%">
-                  <Heading id="password" size="xs">
-                    Password
-                  </Heading>
-                </Box>
+              <Flex justifyContent="space-between" alignItems="center">
+                <Heading size="xs" id="password">
+                  Password
+                </Heading>
                 <Box onClick={showPassword}>
                   {eyeclose ? (
                     <AiFillEye size="20px" />
@@ -256,92 +241,72 @@ const SignUp = () => {
                     <AiOutlineEyeInvisible size="20px" />
                   )}
                 </Box>
-              </Box>
-              <Box>
-                <Input
-                  type="password"
-                  display="none"
-                  ref={passwordInput}
-                  border="none"
-                  size="sm"
-                  focusBorderColor="transparent"
-                  _focus={{ outline: "none" }}
-                  name="password"
-                  value={form.password}
-                  onChange={handleInput}
-                />
-              </Box>
+              </Flex>
+              <Input
+                type="password"
+                display="none"
+                ref={passwordInput}
+                border="none"
+                focusBorderColor="transparent"
+                _focus={{ outline: "none" }}
+                name="password"
+                value={form.password}
+                onChange={handleInput}
+              />
             </Box>
-            {/* confirm password */}
+            {/* Confirm Password */}
             <Box
               border="1px solid"
-              p="20px"
+              p="1rem"
+              mb="0.75rem"
               id="confirmPassword"
-              m="5px 0"
               onClick={showInput}
               ref={confirmPasswordbox}
+              borderRadius="md"
             >
-              <Box>
-                <Heading id="confirmPassword" size="xs">
-                  Confirm Password
-                </Heading>
-              </Box>
-              <Box>
-                <Input
-                  type="password"
-                  display="none"
-                  ref={confirmPasswordInput}
-                  border="none"
-                  size="sm"
-                  focusBorderColor="transparent"
-                  _focus={{ outline: "none" }}
-                  name="confirmPassword"
-                  value={form.confirmPassword}
-                  onChange={handleInput}
-                />
-              </Box>
+              <Heading size="xs" id="confirmPassword">
+                Confirm Password
+              </Heading>
+              <Input
+                type="password"
+                display="none"
+                ref={confirmPasswordInput}
+                border="none"
+                focusBorderColor="transparent"
+                _focus={{ outline: "none" }}
+                name="confirmPassword"
+                value={form.confirmPassword}
+                onChange={handleInput}
+              />
             </Box>
-
-            <Box display="flex">
-              <Box display="inline" p="15px">
-                <input
-                  type="checkbox"
-                  checked={isChecked}
-                  onChange={handleCheckboxChange}
-                />
-              </Box>
-              <Box display="inline">
-                <Text p="10px">
-                  Send me special offers, personalized recommendations, and
-                  learning tips.
-                </Text>
-              </Box>
-            </Box>
-
-            {/* button  */}
-            <Box mt="15px">
+            {/* Checkbox */}
+            <Flex alignItems="center" mt="1rem">
+              <Checkbox isChecked={isChecked} onChange={handleCheckboxChange} />
+              <Text ml="0.5rem">
+                Send me special offers, personalized recommendations, and
+                learning tips.
+              </Text>
+            </Flex>
+            {/* Button */}
+            <Box mt="1.5rem">
               <Button
                 w="100%"
-                color="white"
-                bg="#0056D2"
-                _hover={{ background: "#1E88E5", color: "#CFD8DC" }}
-                borderRadius="0"
-                textAlign="center"
+                colorScheme="blue"
+                borderRadius="md"
                 onClick={handleSignUp}
+                isLoading={userStore.loading}
               >
-                <Heading size="xs">
-                  {userStore.loading ? <Spinner color="white" /> : "Sign Up"}
-                </Heading>
+                Sign Up
               </Button>
             </Box>
-            <Box display="flex" m="1rem 0" fontSize="0.7rem">
-              <Text>You already have Account with us?</Text>
+            <Flex mt="1rem" justifyContent="center" fontSize="0.875rem">
+              <Text>Already have an account?</Text>
               <Link to="/login">
-                <Text _hover={{}} fontWeight="500" ml="0.5rem" color="black">
+                <Text fontWeight="500" ml="0.5rem" color="blue.500">
                   Login
                 </Text>
               </Link>
-            </Box>
+            </Flex>
           </Box>
         </Box>
       </Box>
